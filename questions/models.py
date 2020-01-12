@@ -27,4 +27,4 @@ class Answer(models.Model):
                                     related_name="votes")
 
     def __str__(self):
-        return self.content
+        return self.body
