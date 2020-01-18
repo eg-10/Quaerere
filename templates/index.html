@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+
+{% load render_bundle from webpack_loader %}
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -10,5 +13,9 @@
     <h1>
         WOoooooooooooooo
     </h1>
+
+    <div id="app"></div>
+
+    {% render_bundle 'app' %}
 </body>
 </html>
