@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import Question from '../views/Question.vue'
+import QuestionEditor from '../views/QuestionEditor.vue'
 
 Vue.use(VueRouter)
 
@@ -17,6 +19,17 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+  },
+  {
+    path: '/ask',
+    name: 'question-editor',
+    component: QuestionEditor
+  },
+  {
+    path: '/question/:slug',
+    name: 'question',
+    component: Question,
+    props: true
   }
 ]
 

@@ -1,7 +1,7 @@
 <template>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light my-navbar">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light my-navbar mb-4">
         <div class="container">
-            <router-link class="navbar-brand" :to="{ name: 'home' }">Quarere</router-link>
+            <router-link class="navbar-brand" :to="{ name: 'home' }">Quaerere</router-link>
             <button
                 class="navbar-toggler"
                 type="button"
@@ -23,6 +23,9 @@
                         <router-link class="nav-link my-nav-link" :to="{ name: 'about' }">About</router-link>
                     </li>
                     <li class="nav-item active">
+                        <router-link class="nav-link my-nav-link" :to="{ name: 'question-editor' }">Ask a Question</router-link>
+                    </li>
+                    <li class="nav-item active">
                         <a class="nav-link my-nav-link" href="/accounts/logout/">Logout</a>
                     </li>
                 </ul>
@@ -42,12 +45,15 @@ export default {
     border-bottom: 1px solid #ddd;
 }
 
-.navbar-brand {
+.navbar-brand,
+.navbar-brand:visited {
     color: #ba2929;
+    font-size: 1.5rem;
+    font-family: "Libre Baskerville", serif;
 }
 
 .navbar-brand:hover {
-    color: #ff4747 !important;
+    color: crimson !important;
 }
 
 .my-nav-link:hover {
