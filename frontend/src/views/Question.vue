@@ -7,6 +7,10 @@
                 <span class="author">{{ question.author }}</span>
             </p>
             <p>{{ question.created_at }}</p>
+            <QuestionActions
+                v-if="isQuestionAuthor"
+                :slug="question.slug"
+            />
         </div>
         <div v-if="userHasAnswered">
             <p class="answer-added mt-4">You've written an answer!</p>
@@ -52,6 +56,7 @@
 <script>
 import { apiService } from "../common/api.service.js";
 import AnswerComponent from "@/components/Answer.vue";
+import QuestionActions from "@/components/QuestionActions.vue";
 export default {
     name: "Question",
     props: {
@@ -61,7 +66,8 @@ export default {
         }
     },
     components: {
-        AnswerComponent
+        AnswerComponent,
+        QuestionActions
     },
     data() {
         return {
@@ -75,6 +81,11 @@ export default {
             loadingAnswers: false,
             requestUser: null
         };
+    },
+    computed: {
+        isQuestionAuthor() {
+            return this.question.author === this.requestUser;
+        }
     },
     methods: {
         setPageTitle(title) {
