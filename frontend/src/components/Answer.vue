@@ -1,10 +1,22 @@
 <template>
     <div>
         <p>
-            <strong>{{ answer.author }}</strong>
+            <span class="answer-author">{{ answer.author }}</span>
         </p>
         <p class="text-muted">Answered on {{ answer.created_at }}</p>
         <p>{{ answer.body }}</p>
+        <div v-if="isAnswerAuthor">
+            <router-link
+                :to="{ name: 'answer-editor' , params: {id: answer.id}}"
+                class="btn btn-sm btn-outline-secondary mr-1"
+                >Edit
+            </router-link>
+            <button
+                class="btn btn-sm btn-outline-danger" 
+                @click="triggerDeleteAnswer"
+                >Delete
+            </button>
+        </div>
         <hr>
     </div>
 </template>
@@ -16,7 +28,27 @@ export default {
         answer: {
             type: Object,
             required: true
+        },
+        requestUser: {
+            type: String,
+            required: true
+        }
+    },
+    computed: {
+        isAnswerAuthor() {
+            return this.answer.author === this.requestUser;
+        }
+    },
+    methods: {
+        triggerDeleteAnswer() {
+            this.$emit("delete-answer", this.answer);
         }
     }
 }
 </script>
+
+<style>
+.answer-author {
+    font-weight: bold;
+}
+</style>

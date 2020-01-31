@@ -56,7 +56,13 @@ export default {
     color: crimson !important;
 }
 
+.my-nav-link {
+    font-weight: bold;
+}
+
 .my-nav-link:hover {
     color: #ba2929 !important;
+    background-color: #eee;
+    border-radius: 3px;
 }
 </style>

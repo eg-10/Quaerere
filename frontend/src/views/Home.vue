@@ -8,7 +8,7 @@
                 >{{ question.content }}</router-link>
                 <p>
                     Posted by:
-                    <span>{{ question.author }}</span>
+                    <span class="author">{{ question.author }}</span>
                 </p>
                 <p>
                     {{ question.answers_count }} Answer<span v-if="question.answers_count !== 1">s</span>
@@ -78,5 +78,10 @@ export default {
     text-decoration: none;
     text-decoration-line: none;
     color: #5e5e5e;
+}
+
+.author {
+    color: #ba2929;
+    font-weight: bold;
 }
 </style>
