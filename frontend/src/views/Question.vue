@@ -37,9 +37,9 @@
             <button class="btn btn-sm btn-success mt-4 mb-4" @click="showForm = true">Write an Answer!</button>
         </div>
         <hr />
-        <AnswerComponent v-for="(answer,index) in answers" 
+        <AnswerComponent v-for="answer in answers" 
             :answer="answer" 
-            :key="index" 
+            :key="answer.id" 
             :requestUser="requestUser"
             @delete-answer="deleteAnswer" />
         <div>
