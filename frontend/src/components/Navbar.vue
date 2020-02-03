@@ -57,6 +57,7 @@ export default {
 }
 
 .my-nav-link {
+    padding: 0.2rem;
     font-weight: bold;
 }
 

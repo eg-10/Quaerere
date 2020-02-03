@@ -1,15 +1,21 @@
 <template>
     <div class="container mt-2">
-        <h1 class="mb-3">Ask a Question</h1>
+        <h1 class="mb-3"><span v-if="slug">Edit your</span><span v-else>Ask a</span> Question</h1>
         <form @submit.prevent="onSubmit">
             <textarea
                 v-model="question_body"
                 class="form-control"
                 placeholder="What do you want to ask?"
-                rows="3"
+                rows="5"
             ></textarea>
             <br />
-            <button type="submit" class="btn btn-success">Publish</button>
+            <button type="submit" class="btn btn-success mr-1">Publish</button>
+            <router-link 
+                v-if="slug"
+                class="btn btn-md btn-light mr-1"
+                :to="{ name: 'question', params: { slug: slug } }"
+                >Cancel
+            </router-link>
         </form>
         <p v-if="error" class="muted mt-2">{{ error }}</p>
     </div>
@@ -72,3 +78,14 @@ export default {
     }
 };
 </script>
+
+<style scoped>
+h1 {
+    font-family: 'Crimson Text', serif;
+    font-weight: 700;
+}
+
+textarea {
+    resize: none;
+}
+</style>

@@ -3,7 +3,7 @@
         <div class="container">
             <div v-for="question in questions" :key="question.pk" class="question">
                 <router-link
-                    class="question-link"
+                    class="question-link question-content"
                     :to="{ name: 'question', params: { slug: question.slug } }"
                 >{{ question.content }}</router-link>
                 <p>
@@ -67,6 +67,11 @@ export default {
 <style>
 .question {
     text-align: left;
+}
+
+.question-content {
+    font-family: 'Crimson Text', serif;
+    font-weight: 600;
 }
 
 .question-link {

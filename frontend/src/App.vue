@@ -29,6 +29,6 @@ export default {
 
 <style>
 #app {
-    font-family: 'Lato', sans-serif;
+    font-family: 'Archivo', sans-serif;
 }
 </style>

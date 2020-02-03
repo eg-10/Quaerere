@@ -3,23 +3,26 @@
         <p>
             <span class="answer-author">{{ answer.author }}</span>
         </p>
-        <p class="text-muted">Answered on {{ answer.created_at }}</p>
+        <p
+            :class="{'your-answer font-weight-bold': requestUser === answer.author, 'text-muted': requestUser!== answer.author}"
+        >
+            <span v-if="isAnswerAuthor">You</span>
+            Answered on {{ answer.created_at }}
+        </p>
         <p>{{ answer.body }}</p>
-        <p><strong>{{ likesCounter }} Like<span v-if="likesCounter !== 1">s</span></strong></p>
+        <p>
+            <strong>
+                {{ likesCounter }} Like<span v-if="likesCounter !== 1">s</span>
+            </strong>
+        </p>
         <div v-if="isAnswerAuthor">
             <router-link
                 :to="{ name: 'answer-editor' , params: {id: answer.id}}"
                 class="btn btn-sm btn-outline-secondary mr-1"
-                >Edit
-            </router-link>
-            <button
-                class="btn btn-sm btn-outline-danger" 
-                @click="triggerDeleteAnswer"
-                >Delete
-            </button>
+            >Edit</router-link>
+            <button class="btn btn-sm btn-outline-danger" @click="triggerDeleteAnswer">Delete</button>
         </div>
         <div v-else>
-            
             <button
                 class="btn btn-sm"
                 @click="toggleLike"
@@ -27,10 +30,12 @@
                     'btn-danger':userLikedAnswer,
                     'btn-outline-danger': !userLikedAnswer
                 }"
-                >Like [{{ likesCounter }}]
+            >
+                Like<span v-if="userLikedAnswer">d</span>
+                [{{ likesCounter }}]
             </button>
         </div>
-        <hr>
+        <hr />
     </div>
 </template>
 
@@ -38,7 +43,7 @@
 import { apiService } from "@/common/api.service.js";
 
 export default {
-    name: 'AnswerComponent',
+    name: "AnswerComponent",
     props: {
         answer: {
             type: Object,
@@ -49,11 +54,11 @@ export default {
             required: true
         }
     },
-    data(){
+    data() {
         return {
             userLikedAnswer: this.answer.user_has_voted,
-            likesCounter: this.answer.likes_count 
-        }
+            likesCounter: this.answer.likes_count
+        };
     },
     computed: {
         isAnswerAuthor() {
@@ -67,7 +72,7 @@ export default {
         toggleLike() {
             this.userLikedAnswer === false
                 ? this.likeAnswer()
-                : this.unlikeAnswer()
+                : this.unlikeAnswer();
         },
         likeAnswer() {
             this.userLikedAnswer = true;
@@ -82,10 +87,14 @@ export default {
             apiService(endpoint, "DELETE");
         }
     }
-}
+};
 </script>
 
 <style>
+.your-answer {
+    color: #ba2929;
+}
+
 .answer-author {
     font-weight: bold;
 }

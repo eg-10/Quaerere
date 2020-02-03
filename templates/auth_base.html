@@ -4,6 +4,9 @@
 
 {% block style %}
 <style>
+    body {
+        background: url(//qsfs.fs.quoracdn.net/-3-images.home.illo_1920.png-26-5ac607d989ef8067.png) no-repeat center center fixed;
+    }
     .login-form-container {
         width: 500px;
         margin: auto;
@@ -15,19 +18,33 @@
     .container {
         width: 800px;
     }
+    .my-brand {
+        color: #ba2929;
+        text-align: center;
+        font-size: 3rem;
+        font-family: "Libre Baskerville", serif;
+    }
     .auth-box {
         border: 2px solid lightgray;
         border-radius: 10px;
-        padding: 25px;            
+        padding: 25px;
+        background-color: #ffffff;          
+    }
+    .auth-heading {
+        font-family: 'Crimson Text', serif;
+        font-size: 2.3rem;
+        font-weight: bold;
+        text-align: center;
+        margin-top: 2rem;
     }
 </style>
 {% endblock %}
 
 {% block content %}
     <div class="container">
-    <div class="auth-box mt-5">
-        {% block auth_content %}
-        {% endblock %}
-    </div>
+        <div class="auth-box mt-3 mb-3">
+            {% block auth_content %}
+            {% endblock %}
+        </div>
     </div>
 {% endblock %}

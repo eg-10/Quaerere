@@ -4,7 +4,12 @@
         <form @submit.prevent="onSubmit">
             <textarea v-model="answerBody" class="form-control" rows="3"></textarea>
             <br />
-            <button type="submit" class="btn btn-success">Publish</button>
+            <button type="submit" class="btn btn-success mr-1">Publish</button>
+            <router-link 
+                class="btn btn-md btn-light mr-1"
+                :to="{ name: 'question', params: { slug: questionSlug } }"
+                >Cancel
+            </router-link>
         </form>
         <p v-if="error" class="muted mt-2">{{ error }}</p>
     </div>
@@ -65,3 +70,10 @@ export default {
     }
 };
 </script>
+
+<style scoped>
+h1 {
+    font-family: 'Crimson Text', serif;
+    font-weight: 700;
+}
+</style>

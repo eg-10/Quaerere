@@ -1,3 +1,5 @@
+from django.db.models import Count
+
 from rest_framework import viewsets, generics, status
 from rest_framework.exceptions import ValidationError
 from rest_framework.permissions import IsAuthenticated
@@ -40,7 +42,7 @@ class AnswerListView(generics.ListAPIView):
 
     def get_queryset(self):
         kwarg_slug = self.kwargs.get("slug")
-        return Answer.objects.filter(question__slug=kwarg_slug).order_by("-created_at")
+        return Answer.objects.filter(question__slug=kwarg_slug).annotate(likes=Count('voters')).order_by("-likes")
 
 
 class AnswerRUDAPIView(generics.RetrieveUpdateDestroyAPIView):
